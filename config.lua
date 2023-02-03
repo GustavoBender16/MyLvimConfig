@@ -76,7 +76,25 @@ lvim.colorscheme = "onedark"
 
 -- Lua
 require('onedark').setup {
-    style = 'darker'
+    style       = 'darker',
+    term_colors = true,
+    code_style  = {
+        comments  = 'italic',
+        keywords  = 'underline',
+        functions = 'bold',
+        strings   = 'italic',
+        variables = 'none',
+    },
+    diagnostics = {
+        undercurl = false,
+    },
+    colors      = {
+        bright_orange = "#ffff00",
+    },
+    highlights  = {
+        ["@strings"] = { fg = '#ffff00', sp = '#ffff00' },
+    },
+
 }
 require('onedark').load()
 -- After changing plugin config exit and reopen LunarVim, Run :PackerSync
@@ -141,9 +159,9 @@ lvim.plugins = {
     {
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
-        "lukas-reineke/indent-blankline.nvim",
+        -- "lukas-reineke/indent-blankline.nvim",
         "navarasu/onedark.nvim",
-        "mawkler/modicator.nvim",
+        -- "mawkler/modicator.nvim",
         after = 'onedark.nvim',
         "yamatsum/nvim-cursorline",
         {
@@ -169,25 +187,25 @@ require('nvim-cursorline').setup {
         hl = { underline = true },
     }
 }
-local modicator = require('modicator')
+-- local modicator = require('modicator')
 
--- NOTE: Modicator requires line_numbers and cursorline to be enabled
-modicator.setup({
-    after = 'onedark.nvim',
-    show_warnings = true, -- Show warning if any required option is missing
-    highlights = {
-        modes = {
-            ['i'] = modicator.get_highlight_fg('Question'),
-            ['v'] = modicator.get_highlight_fg('Type'),
-            ['V'] = modicator.get_highlight_fg('Type'),
-            ['�'] = modicator.get_highlight_fg('Type'),
-            ['s'] = modicator.get_highlight_fg('Keyword'),
-            ['S'] = modicator.get_highlight_fg('Keyword'),
-            ['R'] = modicator.get_highlight_fg('Title'),
-            ['c'] = modicator.get_highlight_fg('Constant'),
-        },
-    },
-})
+-- -- NOTE: Modicator requires line_numbers and cursorline to be enabled
+-- modicator.setup({
+--     after = 'onedark.nvim',
+--     show_warnings = true, -- Show warning if any required option is missing
+--     highlights = {
+--         modes = {
+--             ['i'] = modicator.get_highlight_fg('Question'),
+--             ['v'] = modicator.get_highlight_fg('Type'),
+--             ['V'] = modicator.get_highlight_fg('Type'),
+--             ['�'] = modicator.get_highlight_fg('Type'),
+--             ['s'] = modicator.get_highlight_fg('Keyword'),
+--             ['S'] = modicator.get_highlight_fg('Keyword'),
+--             ['R'] = modicator.get_highlight_fg('Title'),
+--             ['c'] = modicator.get_highlight_fg('Constant'),
+--         },
+--     },
+-- })
 
 local status_ok, live_server = pcall(require, "live_server")
 if not status_ok then
